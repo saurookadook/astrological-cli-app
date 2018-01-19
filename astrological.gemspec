@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["'Andy Maskiell'"]
   spec.email         = ["'maskiella@gmail.com'"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{A Gem which helps a user find info about a given astrological sign through a CLI}
+  spec.description   = %q{Once a user has chosen about which astrological sign they would like more info, they will then be prompted about whether they would like a daily/weekly/monthly/yearly reading, and then scrape several websites for relevant information, as well as returning the URLs for each so that they may further browse a referenced web page}
+  spec.homepage      = "https://github.com/saurookadook/astrological-cli-app.git"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
