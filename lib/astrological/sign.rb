@@ -1,2 +1,2 @@
-class Astrological::Sign
-end
+# class Astrological::Sign
+# end
