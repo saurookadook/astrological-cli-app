@@ -1,0 +1,2 @@
+class Astrological::Sign
+end

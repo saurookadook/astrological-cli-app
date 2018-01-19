@@ -1,5 +1,4 @@
-require "astrological/version"
-
 module Astrological
-  # Your code goes here...
 end
+
+require_relative '../config/environment'

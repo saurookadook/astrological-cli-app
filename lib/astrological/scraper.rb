@@ -1,0 +1,2 @@
+class Astrological::Scraper
+end
