@@ -11,7 +11,7 @@ class Astrological::CLI
   def start
     sign_valid?
     reading_valid?
-
+    current_readings
   end
 
   def sign_valid?
@@ -23,7 +23,7 @@ class Astrological::CLI
     if (sign_input == "Aquarius") || (sign_input == "Pisces") || (sign_input == "Aries") || (sign_input == "Taurus") || (sign_input == "Gemini") || (sign_input == "Cancer") || (sign_input == "Leo") || (sign_input == "Virgo") || (sign_input == "Libra") || (sign_input == "Scorpio") || (sign_input == "Sagittarius") || (sign_input == "Capricorn")
       @chosen_sign = sign_input
     else
-      puts "I'm sorry, the expression you entered is invalid. Please try again."
+      puts "I'm sorry, the heavens are confused. Please try again."
       sign_valid?
     end
   end
@@ -39,6 +39,12 @@ class Astrological::CLI
       puts "I'm sorry, the expression you entered is invalid. Please try again."
       reading_valid?
     end
+  end
+
+  def current_readings
+    # puts "Here are the current #{chosen_reading} readings for #{chosen_sign}:"
+    #
+    # "1) #{@chosen_reading.capitalize} rading for #{@chosen_sign}: The routine you subject your body to daily might leave a mark you don’t want it to leave. Think about all... For more: http://www.astrology-zodiac-signs.com/horoscope/libra/daily/"
   end
 
 end
