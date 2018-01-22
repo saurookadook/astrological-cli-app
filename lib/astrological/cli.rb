@@ -21,7 +21,7 @@ class Astrological::CLI
     sign_input = gets.strip.capitalize
     # Refactor with all signs kept in SIGNS_ARRAY constant and iterate over array to check for validity?
     if (sign_input == "Aquarius") || (sign_input == "Pisces") || (sign_input == "Aries") || (sign_input == "Taurus") || (sign_input == "Gemini") || (sign_input == "Cancer") || (sign_input == "Leo") || (sign_input == "Virgo") || (sign_input == "Libra") || (sign_input == "Scorpio") || (sign_input == "Sagittarius") || (sign_input == "Capricorn")
-      @chosen_sign = sign_input
+      @chosen_sign = Astrological::Sign.new(sign_input)
     else
       puts "I'm sorry, the heavens are confused. Please try again."
       sign_valid?
@@ -43,8 +43,9 @@ class Astrological::CLI
   end
 
   def current_readings
-    puts "Here are the current #{@chosen_reading} readings for #{@chosen_sign}:"
-    puts "1) "
+    puts "Here are the current #{@chosen_reading} readings for #{@chosen_sign.name}:"
+    @chosen_sign.scrape_site_two
+    puts "1) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
   end
 
 end

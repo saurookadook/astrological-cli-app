@@ -5,7 +5,7 @@ class Astrological::Sign
     @name = name
   end
 
-  def self.scrape_sites
+  def scrape_sites
     pages = []
 
     # pages << self.scrape_site_one
@@ -28,14 +28,15 @@ class Astrological::Sign
   #   # new_sign.yearly_url =
   # end
 
-  def self.scrape_site_two # cafeastrology.com/
-    site_two_daily_doc = Nokogiri::HTML(open("https://cafeastrology.com/#{@name}dailyhoroscope.html"))
+  def scrape_site_two # cafeastrology.com/
+    binding.pry
+    site_two_daily_doc = Nokogiri::HTML(open("https://cafeastrology.com/#{@name.downcase}dailyhoroscope.html"))
     # site_two_weekly_doc = Nokogiri::HTML(open("https://cafeastrology.com/thisweekinastrology.html"))
-    site_two_monthly_doc = Nokogiri::HTML(open("https://cafeastrology.com/monthly#{@name}horoscope.html"))
-    site_two_yearly_doc = Nokogiri::HTML(open("https://cafeastrology.com/2018-#{@name}-horoscope-overview.html")) # Pass in current year?
+    site_two_monthly_doc = Nokogiri::HTML(open("https://cafeastrology.com/monthly#{@name.downcase}horoscope.html"))
+    site_two_yearly_doc = Nokogiri::HTML(open("https://cafeastrology.com/2018-#{@name.downcase}-horoscope-overview.html")) # Pass in current year?
 
-    @daily = site_two_daily_doc.css(".site-inner .entry-content tbody //tr[3] td").text
-    # @daily_url =
+    @daily = site_two_daily_doc.css(".site-inner .entry-content tbody //tr[3] td").text.to_s[0...81]
+    @daily_url = "https://cafeastrology.com/#{@name}dailyhoroscope.html"
     # # @weekly =
     # # @weekly_url =
     # @monthly =
