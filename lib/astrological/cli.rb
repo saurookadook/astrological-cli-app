@@ -35,6 +35,7 @@ class Astrological::CLI
     reading_input = gets.strip.downcase
     if (reading_input == "daily") || (reading_input == "weekly") || (reading_input == "monthly") || (reading_input == "yearly")
       @chosen_reading = reading_input
+      # perhaps similar to above?
     else
       puts "I'm sorry, the expression you entered is invalid. Please try again."
       reading_valid?
@@ -42,9 +43,8 @@ class Astrological::CLI
   end
 
   def current_readings
-    # puts "Here are the current #{chosen_reading} readings for #{chosen_sign}:"
-    #
-    # "1) #{@chosen_reading.capitalize} rading for #{@chosen_sign}: The routine you subject your body to daily might leave a mark you don’t want it to leave. Think about all... For more: http://www.astrology-zodiac-signs.com/horoscope/libra/daily/"
+    puts "Here are the current #{@chosen_reading} readings for #{@chosen_sign}:"
+    puts "1) "
   end
 
 end
