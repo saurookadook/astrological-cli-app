@@ -1,17 +1,16 @@
-# class Astrological::Scraper
+# class Astrological::SiteThreeReading
+#   attr_accessor :sign_name, :daily, :daily_url, :weekly, :weekly_url, :monthly, :monthly_url, :yearly, :yearly_url
 #
-#   def get_page_one
-#     Nokogiri::HTML(open("http://www.astrology-zodiac-signs.com/"))
+#   def initialize(sign_name = nil)
+#     @sign_name = sign_name
 #   end
 #
-#   def page_one_sign_names
-#     self.get_page_one.css("#zodiac-signs .tittle .portfolio-2").text
+#   def scrape_site_three
+#     site_three_daily_doc = Nokogiri::HTML(open("https://www.astrology.com/horoscope/daily/today/#{@name}.html", 'User-Agent' => 'firefox'))
+#     # site_three_yearly_doc =
+#
+#     @daily = site_three_daily_doc.css(".horoscope .daily-horoscope p").text
+#     @daily_url = "https://www.astrology.com/horoscope/daily/today/#{@name}.html"
 #   end
 #
-#   def page_one_daily_reading
-#
-#   end
-#
-#   def get_page_two
-#   end
 # end

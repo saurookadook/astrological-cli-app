@@ -29,13 +29,12 @@ class Astrological::Sign
   # end
 
   def scrape_site_two # cafeastrology.com/
-    binding.pry
-    site_two_daily_doc = Nokogiri::HTML(open("https://cafeastrology.com/#{@name.downcase}dailyhoroscope.html", 'User-Agent' => 'ruby'))
+    site_two_daily_doc = Nokogiri::HTML(open("https://cafeastrology.com/#{@name.downcase}dailyhoroscope.html", 'User-Agent' => 'firefox'))
     # site_two_weekly_doc = Nokogiri::HTML(open("https://cafeastrology.com/thisweekinastrology.html"))
-    site_two_monthly_doc = Nokogiri::HTML(open("https://cafeastrology.com/monthly#{@name.downcase}horoscope.html", 'User-Agent' => 'ruby'))
-    site_two_yearly_doc = Nokogiri::HTML(open("https://cafeastrology.com/2018-#{@name.downcase}-horoscope-overview.html", 'User-Agent' => 'ruby')) # Pass in current year?
+    site_two_monthly_doc = Nokogiri::HTML(open("https://cafeastrology.com/monthly#{@name.downcase}horoscope.html", 'User-Agent' => 'firefox'))
+    site_two_yearly_doc = Nokogiri::HTML(open("https://cafeastrology.com/2018-#{@name.downcase}-horoscope-overview.html", 'User-Agent' => 'firefox')) # Pass in current year?
 
-    @daily = site_two_daily_doc.css(".site-inner .entry-content tbody //tr[3] td").text.to_s[0...81]
+    @daily = site_two_daily_doc.css(".site-inner .entry-content tbody //tr[3] td").text[0...81]
     @daily_url = "https://cafeastrology.com/#{@name}dailyhoroscope.html"
     # # @weekly =
     # # @weekly_url =
@@ -45,5 +44,4 @@ class Astrological::Sign
     # @yearly_url =
   end
 
-  # http://www.astrology-zodiac-signs.com/zodiac-sign/#{name}/
 end
