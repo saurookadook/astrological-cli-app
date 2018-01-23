@@ -9,12 +9,13 @@ class Astrological::CLI
   end
 
   def start
-    sign_valid?
-    reading_valid?
+    choose_sign
+    choose_reading
     current_readings
+    another_reading?
   end
 
-  def sign_valid?
+  def choose_sign
     puts ""
     puts "Which sign would you like to see more info about? Please enter one of the following:"
     puts "Aquarius / Pisces / Aries / Taurus / Gemini / Cancer / Leo / Virgo / Libra / Scorpio / Sagittarius / Capricorn"
@@ -24,11 +25,11 @@ class Astrological::CLI
       @chosen_sign = Astrological::Sign.new(sign_input)
     else
       puts "I'm sorry, the heavens are confused. Please try again."
-      sign_valid?
+      choose_sign
     end
   end
 
-  def reading_valid?
+  def choose_reading
     puts ""
     puts "Great! Now, which reading would you like to view? Please enter one of the following:"
     puts "daily / weekly / monthly / yearly"
@@ -38,7 +39,7 @@ class Astrological::CLI
       # perhaps similar to above?
     else
       puts "I'm sorry, the expression you entered is invalid. Please try again."
-      reading_valid?
+      choose_reading
     end
   end
 
@@ -46,6 +47,21 @@ class Astrological::CLI
     puts "Here are the current #{@chosen_reading} readings for #{@chosen_sign.name}:"
     @chosen_sign.scrape_site_two
     puts "1) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
+  end
+
+  def another_reading?
+    puts "What would you like to do next?"
+    puts "If you'd like to view another reading for this sign, please enter: another reading"
+    puts "If you'd like to view another reading for a different sign, please enter: different sign"
+    puts "Or if you'd like to exit Astrolgical, please enter: exit"
+    another_input = gets.strip.downcase
+    if another_input == "another_reading"
+      pick_reading
+      # current_readings
+      # another_reading?
+    elsif another_input == "different sign"
+      start
+    end
   end
 
 end
