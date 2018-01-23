@@ -22,7 +22,7 @@ class Astrological::CLI
     sign_input = gets.strip.capitalize
     # Refactor with all signs kept in SIGNS_ARRAY constant and iterate over array to check for validity?
     if (sign_input == "Aquarius") || (sign_input == "Pisces") || (sign_input == "Aries") || (sign_input == "Taurus") || (sign_input == "Gemini") || (sign_input == "Cancer") || (sign_input == "Leo") || (sign_input == "Virgo") || (sign_input == "Libra") || (sign_input == "Scorpio") || (sign_input == "Sagittarius") || (sign_input == "Capricorn")
-      @chosen_sign = Astrological::Sign.new(sign_input)
+      @chosen_sign = sign_input
     else
       puts "I'm sorry, the heavens are confused. Please try again."
       choose_sign
@@ -50,11 +50,19 @@ class Astrological::CLI
 
     # use .each_with_index, similarly to the way Avi does in daily-deals
     # and need to figure out better way to call reading period data
-
-    @chosen_sign.scrape_site_two
-    puts "2) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
-    @chosen_sign.scrape_site_three
-    puts "3) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
+    sign = Astrological::Sign.new(@chosen_sign)
+    binding.pry
+    sign.scrape_sites.each_with_index do |sign_info, i|
+      if @chosen_reading == "daily"
+        puts "#{i}) #{sign_info.daily}... For more, visit: #{sign_info.daily_url}"
+      elsif @chosen_reading == "weekly"
+        puts "#{i}) #{sign_info.weekly}... For more, visit: #{sign_info.weekly_url}"
+      elsif @chosen_reading == "monthly"
+        puts "#{i}) #{sign_info.monthly}... For more, visit: #{sign_info.monthly_url}"
+      elsif @chosen_reading == "yearly"
+        puts "#{i}) #{sign_info.yearly}... For more, visit: #{sign_info.yearly_url}"
+      end
+    end
   end
 
   def another_reading?
