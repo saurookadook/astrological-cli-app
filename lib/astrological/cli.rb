@@ -54,20 +54,26 @@ class Astrological::CLI
       @chosen_sign.scrape_site_three
       puts "3) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
     when "weekly"
-      @chosen_sign.scrape_site_two
+      @chosen_sign.scrape_site_one
       puts "1) #{@chosen_sign.weekly}... For more, visit: #{@chosen_sign.weekly_url}"
-      @chosen_sign.scrape_site_three
+      @chosen_sign.scrape_site_two
       puts "2) #{@chosen_sign.weekly}... For more, visit: #{@chosen_sign.weekly_url}"
+      @chosen_sign.scrape_site_three
+      puts "3) #{@chosen_sign.weekly}... For more, visit: #{@chosen_sign.weekly_url}"
     when "monthly"
-      @chosen_sign.scrape_site_two
+      @chosen_sign.scrape_site_one
       puts "1) #{@chosen_sign.monthly}... For more, visit: #{@chosen_sign.monthly_url}"
-      @chosen_sign.scrape_site_three
-      puts "2) #{@chosen_sign.monthly}... For more, visit: #{@chosen_sign.monthly_url}"
-    when "yearly"
       @chosen_sign.scrape_site_two
-      puts "1) #{@chosen_sign.yearly}... For more, visit: #{@chosen_sign.yearly_url}"
+      puts "2) #{@chosen_sign.monthly}... For more, visit: #{@chosen_sign.monthly_url}"
       @chosen_sign.scrape_site_three
+      puts "3) #{@chosen_sign.monthly}... For more, visit: #{@chosen_sign.monthly_url}"
+    when "yearly"
+      @chosen_sign.scrape_site_one
+      puts "1) #{@chosen_sign.yearly}... For more, visit: #{@chosen_sign.yearly_url}"
+      @chosen_sign.scrape_site_two
       puts "2) #{@chosen_sign.yearly}... For more, visit: #{@chosen_sign.yearly_url}"
+      @chosen_sign.scrape_site_three
+      puts "3) #{@chosen_sign.yearly}... For more, visit: #{@chosen_sign.yearly_url}"
     end
     # puts "1) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
 

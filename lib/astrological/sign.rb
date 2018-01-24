@@ -27,7 +27,7 @@ class Astrological::Sign
     @weekly_url = "http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/weekly/"
     @monthly = monthly_doc.css(".monthlyHoroscope p").text[0...65]
     @monthly_url = "http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/monthly/"
-    @yearly = yearly_doc.css(".astrology .headline-div-block //p[2]").text[0...65]
+    @yearly = yearly_doc.css(".astrology .headline-div-block p")[1].text[0...65]
     @yearly_url = "http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/2018/"
 
     # new_sign.daily =
@@ -48,6 +48,10 @@ class Astrological::Sign
 
     @daily = daily_doc.css(".site-inner .entry-content tbody //tr[3] td").text[0...65]
     @daily_url = "https://cafeastrology.com/#{@name.downcase}dailyhoroscope.html"
+    @monthly = monthly_doc.css(".entry-content .content-box-green p").text[0...65]
+    @monthly_url = "https://cafeastrology.com/monthly#{@name.downcase}horoscope.html"
+    @yearly = yearly_doc.css(".entry-content p")[10].text[0...65]
+    @yearly_url = "https://cafeastrology.com/2018-#{@name.downcase}-horoscope-overview.html"
 
     # site_two_sign = self.new(@name)
     # site_two_sign.daily = daily_doc.css(".site-inner .entry-content tbody //tr[3] td").text[0...81]
