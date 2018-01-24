@@ -17,12 +17,18 @@ class Astrological::Sign
 
   def scrape_site_one # www.astrology-zodiac-signs.com/
     daily_doc = Nokogiri::HTML(open("http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/daily/"))
-    weekly_doc = Nokogiri::HTML(open(""))
-    monthly_doc = Nokogiri::HTML(open(""))
-    yearly_doc = Nokogiri::HTML(open(""))
+    weekly_doc = Nokogiri::HTML(open("http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/weekly/"))
+    monthly_doc = Nokogiri::HTML(open("http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/monthly/"))
+    yearly_doc = Nokogiri::HTML(open("http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/2018/")) # Use current year instead?
 
-    @daily = daily_doc.css(".dailyHoroscope p").text[0...81]
+    @daily = daily_doc.css(".dailyHoroscope p").text[0...65]
     @daily_url = "http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/daily/"
+    @weekly = weekly_doc.css(".weeklyHoroscope p").text[0...65]
+    @weekly_url = "http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/weekly/"
+    @monthly = monthly_doc.css(".monthlyHoroscope p").text[0...65]
+    @monthly_url = "http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/monthly/"
+    @yearly = yearly_doc.css(".astrology .headline-div-block //p[2]").text[0...65]
+    @yearly_url = "http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/2018/"
 
     # new_sign.daily =
     # new_sign.daily_url =
@@ -40,7 +46,7 @@ class Astrological::Sign
     monthly_doc = Nokogiri::HTML(open("https://cafeastrology.com/monthly#{@name.downcase}horoscope.html", 'User-Agent' => 'firefox'))
     yearly_doc = Nokogiri::HTML(open("https://cafeastrology.com/2018-#{@name.downcase}-horoscope-overview.html", 'User-Agent' => 'firefox')) # Pass in current year?
 
-    @daily = daily_doc.css(".site-inner .entry-content tbody //tr[3] td").text[0...81]
+    @daily = daily_doc.css(".site-inner .entry-content tbody //tr[3] td").text[0...65]
     @daily_url = "https://cafeastrology.com/#{@name.downcase}dailyhoroscope.html"
 
     # site_two_sign = self.new(@name)
@@ -58,9 +64,9 @@ class Astrological::Sign
     daily_doc = Nokogiri::HTML(open("https://www.astrology.com/horoscope/daily/today/#{@name.downcase}.html", 'User-Agent' => 'firefox'))
     yearly_doc = Nokogiri::HTML(open("https://www.astrology.com/us/horoscope/yearly-overview-2018.aspx?when=this-year&sign=#{@name.downcase}", 'User-Agent' => 'firefox'))
 
-    @daily = daily_doc.css(".horoscope .daily-horoscope p").text[0...81]
+    @daily = daily_doc.css(".horoscope .daily-horoscope p").text[0...65]
     @daily_url = "https://www.astrology.com/horoscope/daily/today/#{@name.downcase}.html"
-    @yearly = yearly_doc.css(".horoscope .daily-horoscope #overview p").text[0...81]
+    @yearly = yearly_doc.css(".horoscope .daily-horoscope #overview p").text[0...65]
     @yearly_url = "https://www.astrology.com/us/horoscope/yearly-overview-2018.aspx?when=this-year&sign=#{@name.downcase}"
 
     # site_three_sign = self.new(@name)
