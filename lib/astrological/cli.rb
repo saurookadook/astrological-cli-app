@@ -22,7 +22,7 @@ class Astrological::CLI
     sign_input = gets.strip.capitalize
     # Refactor with all signs kept in SIGNS_ARRAY constant and iterate over array to check for validity?
     if (sign_input == "Aquarius") || (sign_input == "Pisces") || (sign_input == "Aries") || (sign_input == "Taurus") || (sign_input == "Gemini") || (sign_input == "Cancer") || (sign_input == "Leo") || (sign_input == "Virgo") || (sign_input == "Libra") || (sign_input == "Scorpio") || (sign_input == "Sagittarius") || (sign_input == "Capricorn")
-      @chosen_sign = Astrological::Sign.new(sign_input)
+      @chosen_sign = sign_input
     else
       puts "I'm sorry, the heavens are confused. Please try again."
       choose_sign
@@ -32,7 +32,8 @@ class Astrological::CLI
   def choose_reading
     puts ""
     puts "Great! Now, which reading would you like to view? Please enter one of the following:"
-    puts "daily / weekly / monthly / yearly"
+    # puts "daily / weekly / monthly / yearly"
+    puts "daily / monthly / yearly"
     reading_input = gets.strip.downcase
     if (reading_input == "daily") || (reading_input == "weekly") || (reading_input == "monthly") || (reading_input == "yearly")
       @chosen_reading = reading_input
@@ -44,53 +45,54 @@ class Astrological::CLI
   end
 
   def current_readings
-    puts "Here are the current #{@chosen_reading} readings for #{@chosen_sign.name}:"
-    case @chosen_reading
-    when "daily"
-      @chosen_sign.scrape_site_one
-      puts "1) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
-      @chosen_sign.scrape_site_two
-      puts "2) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
-      @chosen_sign.scrape_site_three
-      puts "3) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
-    when "weekly"
-      @chosen_sign.scrape_site_one
-      puts "1) #{@chosen_sign.weekly}... For more, visit: #{@chosen_sign.weekly_url}"
-      @chosen_sign.scrape_site_two
-      puts "2) #{@chosen_sign.weekly}... For more, visit: #{@chosen_sign.weekly_url}"
-      @chosen_sign.scrape_site_three
-      puts "3) #{@chosen_sign.weekly}... For more, visit: #{@chosen_sign.weekly_url}"
-    when "monthly"
-      @chosen_sign.scrape_site_one
-      puts "1) #{@chosen_sign.monthly}... For more, visit: #{@chosen_sign.monthly_url}"
-      @chosen_sign.scrape_site_two
-      puts "2) #{@chosen_sign.monthly}... For more, visit: #{@chosen_sign.monthly_url}"
-      @chosen_sign.scrape_site_three
-      puts "3) #{@chosen_sign.monthly}... For more, visit: #{@chosen_sign.monthly_url}"
-    when "yearly"
-      @chosen_sign.scrape_site_one
-      puts "1) #{@chosen_sign.yearly}... For more, visit: #{@chosen_sign.yearly_url}"
-      @chosen_sign.scrape_site_two
-      puts "2) #{@chosen_sign.yearly}... For more, visit: #{@chosen_sign.yearly_url}"
-      @chosen_sign.scrape_site_three
-      puts "3) #{@chosen_sign.yearly}... For more, visit: #{@chosen_sign.yearly_url}"
-    end
+    puts "Here are the current #{@chosen_reading} readings for #{@chosen_sign}:"
+    # case @chosen_reading
+    # when "daily"
+    #   @chosen_sign.scrape_site_one
+    #   puts "1) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
+    #   @chosen_sign.scrape_site_two
+    #   puts "2) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
+    #   @chosen_sign.scrape_site_three
+    #   puts "3) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
+    # when "weekly"
+    #   @chosen_sign.scrape_site_one
+    #   puts "1) #{@chosen_sign.weekly}... For more, visit: #{@chosen_sign.weekly_url}"
+    #   @chosen_sign.scrape_site_two
+    #   puts "2) #{@chosen_sign.weekly}... For more, visit: #{@chosen_sign.weekly_url}"
+    #   @chosen_sign.scrape_site_three
+    #   puts "3) #{@chosen_sign.weekly}... For more, visit: #{@chosen_sign.weekly_url}"
+    # when "monthly"
+    #   @chosen_sign.scrape_site_one
+    #   puts "1) #{@chosen_sign.monthly}... For more, visit: #{@chosen_sign.monthly_url}"
+    #   @chosen_sign.scrape_site_two
+    #   puts "2) #{@chosen_sign.monthly}... For more, visit: #{@chosen_sign.monthly_url}"
+    #   @chosen_sign.scrape_site_three
+    #   puts "3) #{@chosen_sign.monthly}... For more, visit: #{@chosen_sign.monthly_url}"
+    # when "yearly"
+    #   @chosen_sign.scrape_site_one
+    #   puts "1) #{@chosen_sign.yearly}... For more, visit: #{@chosen_sign.yearly_url}"
+    #   @chosen_sign.scrape_site_two
+    #   puts "2) #{@chosen_sign.yearly}... For more, visit: #{@chosen_sign.yearly_url}"
+    #   @chosen_sign.scrape_site_three
+    #   puts "3) #{@chosen_sign.yearly}... For more, visit: #{@chosen_sign.yearly_url}"
+    # end
     # puts "1) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
 
     # use .each_with_index, similarly to the way Avi does in daily-deals
     # and need to figure out better way to call reading period data
     # binding.pry
-    # Astrological::Sign.new(@chosen_sign).scrape_sites.each_with_index do |sign_info, i|
-      # if @chosen_reading == "daily"
-      #   puts "#{i}) #{sign_info.daily}... For more, visit: #{sign_info.daily_url}"
+    sites = Astrological::Sign.scrape_sites(@chosen_sign)
+    sites.each.with_index(1) do |sign_info, i|
+      if @chosen_reading == "daily"
+        puts "#{i}) #{sign_info.daily}... For more, visit: #{sign_info.daily_url}"
       # elsif @chosen_reading == "weekly"
       #   puts "#{i}) #{sign_info.weekly}... For more, visit: #{sign_info.weekly_url}"
-      # elsif @chosen_reading == "monthly"
-      #   puts "#{i}) #{sign_info.monthly}... For more, visit: #{sign_info.monthly_url}"
-      # elsif @chosen_reading == "yearly"
-      #   puts "#{i}) #{sign_info.yearly}... For more, visit: #{sign_info.yearly_url}"
-      # end
-    # end
+      elsif @chosen_reading == "monthly"
+        puts "#{i}) #{sign_info.monthly}... For more, visit: #{sign_info.monthly_url}" unless (sign_info.monthly == nil || sign_info.monthly_url == nil)
+      elsif @chosen_reading == "yearly"
+        puts "#{i}) #{sign_info.yearly}... For more, visit: #{sign_info.yearly_url}"
+      end
+    end
   end
 
   def another_reading?
