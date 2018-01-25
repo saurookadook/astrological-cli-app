@@ -44,15 +44,15 @@ class Astrological::Sign
   end
 
   def self.scrape_site_two # cafeastrology.com/
-    daily_doc = Nokogiri::HTML(open("https://cafeastrology.com/#{@name.downcase}dailyhoroscope.html", 'User-Agent' => 'firefox'))
+    daily_doc = Nokogiri::HTML(open("https://cafeastrology.com/#{@name.downcase}dailyhoroscope.html", 'User-Agent' => 'chrome'))
     # weekly_doc = Nokogiri::HTML(open("https://cafeastrology.com/thisweekinastrology.html"))
-    monthly_doc = Nokogiri::HTML(open("https://cafeastrology.com/monthly#{@name.downcase}horoscope.html", 'User-Agent' => 'firefox'))
-    yearly_doc = Nokogiri::HTML(open("https://cafeastrology.com/2018-#{@name.downcase}-horoscope-overview.html", 'User-Agent' => 'firefox')) # Pass in current year?
+    monthly_doc = Nokogiri::HTML(open("https://cafeastrology.com/monthly#{@name.downcase}horoscope.html", 'User-Agent' => 'chrome'))
+    yearly_doc = Nokogiri::HTML(open("https://cafeastrology.com/2018-#{@name.downcase}-horoscope-overview.html", 'User-Agent' => 'chrome')) # Pass in current year?
 
     site_two_info = self.new
     # site_two_info.daily = daily_doc.css(".entry-content div[align='center'] table tbody tr")[2].css("td").text[0...65] # Still isn't scraping correctly
     site_two_info.daily_url = "https://cafeastrology.com/#{@name.downcase}dailyhoroscope.html"
-    site_two_info.monthly = monthly_doc.css(".entry-content .content-box-green p").text[0...65]
+    site_two_info.monthly = monthly_doc.css(".entry-content .content-box-green p").text[0...65] # Not scraping correctly
     site_two_info.monthly_url = "https://cafeastrology.com/monthly#{@name.downcase}horoscope.html"
     site_two_info.yearly = yearly_doc.css(".entry-content p")[10].text[0...65]
     site_two_info.yearly_url = "https://cafeastrology.com/2018-#{@name.downcase}-horoscope-overview.html"
@@ -70,8 +70,8 @@ class Astrological::Sign
   end
 
   def self.scrape_site_three # astrology.com
-    daily_doc = Nokogiri::HTML(open("https://www.astrology.com/horoscope/daily/today/#{@name.downcase}.html", 'User-Agent' => 'firefox'))
-    yearly_doc = Nokogiri::HTML(open("https://www.astrology.com/us/horoscope/yearly-overview-2018.aspx?when=this-year&sign=#{@name.downcase}", 'User-Agent' => 'firefox'))
+    daily_doc = Nokogiri::HTML(open("https://www.astrology.com/horoscope/daily/today/#{@name.downcase}.html", 'User-Agent' => 'chrome'))
+    yearly_doc = Nokogiri::HTML(open("https://www.astrology.com/us/horoscope/yearly-overview-2018.aspx?when=this-year&sign=#{@name.downcase}", 'User-Agent' => 'chrome'))
 
     site_three_info = self.new
     site_three_info.daily = daily_doc.css(".horoscope .daily-horoscope p").text[0...65]

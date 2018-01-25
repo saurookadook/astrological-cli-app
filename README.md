@@ -1,8 +1,6 @@
 # Astrological
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/astrological`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to Astrological, a Ruby gem that utilizes a CLI that lets you find your horoscope reading from a few different sites. Once you choose your sign, you will also be able to select the time period of the reading (daily, monthly, or yearly) that you would like to view.
 
 ## Installation
 

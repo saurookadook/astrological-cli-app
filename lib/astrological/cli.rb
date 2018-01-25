@@ -108,8 +108,11 @@ class Astrological::CLI
       another_reading?
     elsif another_input == "different sign"
       start
-    else
+    elsif another_input == "exit"
       puts "Thank you for using Astrological!"
+    else
+      puts "I'm sorry, the expression you entered is invalid. Please try again:"
+      another_reading?
     end
   end
 
