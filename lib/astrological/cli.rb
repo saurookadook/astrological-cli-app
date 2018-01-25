@@ -3,7 +3,6 @@ class Astrological::CLI
   attr_accessor :chosen_sign, :chosen_reading
 
   def call
-    # Astrological::Scraper.new.sign_info
     puts "~>*<~ Welcome to Astrological! ~>*<~"
     start
   end
@@ -37,7 +36,6 @@ class Astrological::CLI
     reading_input = gets.strip.downcase
     if (reading_input == "daily") || (reading_input == "weekly") || (reading_input == "monthly") || (reading_input == "yearly")
       @chosen_reading = reading_input
-      # perhaps similar to above?
     else
       puts "I'm sorry, the expression you entered is invalid. Please try again."
       choose_reading
@@ -46,41 +44,6 @@ class Astrological::CLI
 
   def current_readings
     puts "Here are the current #{@chosen_reading} readings for #{@chosen_sign}:"
-    # case @chosen_reading
-    # when "daily"
-    #   @chosen_sign.scrape_site_one
-    #   puts "1) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
-    #   @chosen_sign.scrape_site_two
-    #   puts "2) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
-    #   @chosen_sign.scrape_site_three
-    #   puts "3) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
-    # when "weekly"
-    #   @chosen_sign.scrape_site_one
-    #   puts "1) #{@chosen_sign.weekly}... For more, visit: #{@chosen_sign.weekly_url}"
-    #   @chosen_sign.scrape_site_two
-    #   puts "2) #{@chosen_sign.weekly}... For more, visit: #{@chosen_sign.weekly_url}"
-    #   @chosen_sign.scrape_site_three
-    #   puts "3) #{@chosen_sign.weekly}... For more, visit: #{@chosen_sign.weekly_url}"
-    # when "monthly"
-    #   @chosen_sign.scrape_site_one
-    #   puts "1) #{@chosen_sign.monthly}... For more, visit: #{@chosen_sign.monthly_url}"
-    #   @chosen_sign.scrape_site_two
-    #   puts "2) #{@chosen_sign.monthly}... For more, visit: #{@chosen_sign.monthly_url}"
-    #   @chosen_sign.scrape_site_three
-    #   puts "3) #{@chosen_sign.monthly}... For more, visit: #{@chosen_sign.monthly_url}"
-    # when "yearly"
-    #   @chosen_sign.scrape_site_one
-    #   puts "1) #{@chosen_sign.yearly}... For more, visit: #{@chosen_sign.yearly_url}"
-    #   @chosen_sign.scrape_site_two
-    #   puts "2) #{@chosen_sign.yearly}... For more, visit: #{@chosen_sign.yearly_url}"
-    #   @chosen_sign.scrape_site_three
-    #   puts "3) #{@chosen_sign.yearly}... For more, visit: #{@chosen_sign.yearly_url}"
-    # end
-    # puts "1) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
-
-    # use .each_with_index, similarly to the way Avi does in daily-deals
-    # and need to figure out better way to call reading period data
-    # binding.pry
     sites = Astrological::Sign.scrape_sites(@chosen_sign)
     sites.each.with_index(1) do |sign_info, i|
       if @chosen_reading == "daily"
@@ -117,3 +80,39 @@ class Astrological::CLI
   end
 
 end
+
+
+# case @chosen_reading
+# when "daily"
+#   @chosen_sign.scrape_site_one
+#   puts "1) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
+#   @chosen_sign.scrape_site_two
+#   puts "2) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
+#   @chosen_sign.scrape_site_three
+#   puts "3) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
+# when "weekly"
+#   @chosen_sign.scrape_site_one
+#   puts "1) #{@chosen_sign.weekly}... For more, visit: #{@chosen_sign.weekly_url}"
+#   @chosen_sign.scrape_site_two
+#   puts "2) #{@chosen_sign.weekly}... For more, visit: #{@chosen_sign.weekly_url}"
+#   @chosen_sign.scrape_site_three
+#   puts "3) #{@chosen_sign.weekly}... For more, visit: #{@chosen_sign.weekly_url}"
+# when "monthly"
+#   @chosen_sign.scrape_site_one
+#   puts "1) #{@chosen_sign.monthly}... For more, visit: #{@chosen_sign.monthly_url}"
+#   @chosen_sign.scrape_site_two
+#   puts "2) #{@chosen_sign.monthly}... For more, visit: #{@chosen_sign.monthly_url}"
+#   @chosen_sign.scrape_site_three
+#   puts "3) #{@chosen_sign.monthly}... For more, visit: #{@chosen_sign.monthly_url}"
+# when "yearly"
+#   @chosen_sign.scrape_site_one
+#   puts "1) #{@chosen_sign.yearly}... For more, visit: #{@chosen_sign.yearly_url}"
+#   @chosen_sign.scrape_site_two
+#   puts "2) #{@chosen_sign.yearly}... For more, visit: #{@chosen_sign.yearly_url}"
+#   @chosen_sign.scrape_site_three
+#   puts "3) #{@chosen_sign.yearly}... For more, visit: #{@chosen_sign.yearly_url}"
+# end
+
+# use .each_with_index, similarly to the way Avi does in daily-deals
+# and need to figure out better way to call reading period data
+# binding.pry

@@ -33,14 +33,6 @@ class Astrological::Sign
     site_one_info.yearly_url = "http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/2018/"
 
     site_one_info
-    # new_sign.daily =
-    # new_sign.daily_url =
-    # new_sign.weekly =
-    # new_sign.weekly_url =
-    # new_sign.monthly =
-    # new_sign.monthly_url =
-    # new_sign.yearly =
-    # new_sign.yearly_url =
   end
 
   def self.scrape_site_two # cafeastrology.com/
@@ -58,15 +50,6 @@ class Astrological::Sign
     site_two_info.yearly_url = "https://cafeastrology.com/2018-#{@name.downcase}-horoscope-overview.html"
 
     site_two_info
-    # site_two_sign = self.new(@name)
-    # site_two_sign.daily = daily_doc.css(".site-inner .entry-content tbody //tr[3] td").text[0...81]
-    # site_two_sign.daily_url = "https://cafeastrology.com/#{@name.downcase}dailyhoroscope.html"
-    # # @weekly =
-    # # @weekly_url =
-    # @monthly =
-    # @monthly_url =
-    # @yearly =
-    # @yearly_url =
   end
 
   def self.scrape_site_three # astrology.com
@@ -82,11 +65,6 @@ class Astrological::Sign
     site_three_info.yearly_url = "https://www.astrology.com/us/horoscope/yearly-overview-2018.aspx?when=this-year&sign=#{@name.downcase}"
 
     site_three_info
-    # site_three_sign = self.new(@name)
-    # site_three_sign.daily = daily_doc.css(".horoscope .daily-horoscope p").text[0...81]
-    # site_three_sign.daily_url = "https://www.astrology.com/horoscope/daily/today/#{@name.downcase}.html"
-    # site_three_sign.yearly = yearly_doc.css(".horoscope .daily-horoscope #overview p").text[0...81]
-    # site_three_sign.yearly_url = "https://www.astrology.com/us/horoscope/yearly-overview-2018.aspx?when=this-year&sign=#{@name.downcase}"
   end
 
 end
