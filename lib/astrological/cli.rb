@@ -47,13 +47,19 @@ class Astrological::CLI
     sites = Astrological::Sign.scrape_sites(@chosen_sign)
     sites.each.with_index(1) do |sign_info, i|
       if @chosen_reading == "daily"
-        puts "#{i}) #{sign_info.daily}... For more, visit: #{sign_info.daily_url}"
+        puts ""
+        puts "#{i}) #{sign_info.daily}..."
+        puts "For more, visit: #{sign_info.daily_url}"
       # elsif @chosen_reading == "weekly"
       #   puts "#{i}) #{sign_info.weekly}... For more, visit: #{sign_info.weekly_url}"
       elsif @chosen_reading == "monthly"
-        puts "#{i}) #{sign_info.monthly}... For more, visit: #{sign_info.monthly_url}" unless (sign_info.monthly == nil || sign_info.monthly_url == nil)
+        puts ""
+        puts "#{i}) #{sign_info.monthly}..."
+        puts "For more, visit: #{sign_info.monthly_url}" unless (sign_info.monthly == nil || sign_info.monthly_url == nil)
       elsif @chosen_reading == "yearly"
-        puts "#{i}) #{sign_info.yearly}... For more, visit: #{sign_info.yearly_url}"
+        puts ""
+        puts "#{i}) #{sign_info.yearly}..."
+        puts "For more, visit: #{sign_info.yearly_url}"
       end
     end
   end
