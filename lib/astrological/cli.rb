@@ -1,6 +1,20 @@
 class Astrological::CLI
+  attr_accessor :chosen_sign, :chosen_reading, :sign_readings
 
-  attr_accessor :chosen_sign, :chosen_reading
+  ALL_SIGNS = [
+    "Aquarius",
+    "Pisces",
+    "Aries",
+    "Taurus",
+    "Gemini",
+    "Cancer",
+    "Leo",
+    "Virgo",
+    "Libra",
+    "Scorpio",
+    "Sagittarius",
+    "Capricorn"
+  ]
 
   def call
     puts "~>*<~ Welcome to Astrological! ~>*<~"
@@ -10,7 +24,7 @@ class Astrological::CLI
   def start
     choose_sign
     choose_reading
-    gather_readings # Maybe?
+    gather_readings
     current_readings
     another_reading?
   end
@@ -21,7 +35,7 @@ class Astrological::CLI
     puts "Aquarius / Pisces / Aries / Taurus / Gemini / Cancer / Leo / Virgo / Libra / Scorpio / Sagittarius / Capricorn"
     sign_input = gets.strip.capitalize
     # Refactor with all signs kept in SIGNS_ARRAY constant and iterate over array to check for validity?
-    if (sign_input == "Aquarius") || (sign_input == "Pisces") || (sign_input == "Aries") || (sign_input == "Taurus") || (sign_input == "Gemini") || (sign_input == "Cancer") || (sign_input == "Leo") || (sign_input == "Virgo") || (sign_input == "Libra") || (sign_input == "Scorpio") || (sign_input == "Sagittarius") || (sign_input == "Capricorn")
+    if ALL_SIGNS.include?(sign_input)
       @chosen_sign = sign_input
     else
       puts "I'm sorry, the heavens are confused. Please try again."
@@ -32,10 +46,9 @@ class Astrological::CLI
   def choose_reading
     puts ""
     puts "Great! Now, which reading would you like to view? Please enter one of the following:"
-    # puts "daily / weekly / monthly / yearly"
     puts "daily / monthly / yearly"
     reading_input = gets.strip.downcase
-    if (reading_input == "daily") || (reading_input == "weekly") || (reading_input == "monthly") || (reading_input == "yearly")
+    if (reading_input == "daily") || (reading_input == "monthly") || (reading_input == "yearly")
       @chosen_reading = reading_input
     else
       puts "I'm sorry, the expression you entered is invalid. Please try again."
@@ -45,14 +58,14 @@ class Astrological::CLI
 
   def gather_readings
     # creates instances of `Sign` class?
-    # readings_array = Astrological::Scraper.scrape_sites(@chosen_sign)
+    readings_array = Astrological::Scraper.scrape_sites(@chosen_sign)
+    # @sign_readings = Astrological::Sign.create_readings(readings_array)
+    Astrological::Sign.create_readings(readings_array)
   end
 
   def current_readings
     puts "Here are the current #{@chosen_reading} readings for #{@chosen_sign}:"
-    sites = Astrological::Sign.new(@chosen_sign).all
-
-    sites.each.with_index(1) do |sign_info, i|
+    Astrological::Sign.all.each.with_index(1) do |sign_info, i|
       if @chosen_reading == "daily"
         puts ""
         puts "#{i}) #{sign_info.daily}..."

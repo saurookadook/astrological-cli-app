@@ -29,11 +29,11 @@ class Astrological::Scraper
     # site_one_info
 
     site_one_info = {
-      daily: daily_doc.css(".dailyHoroscope p").text[0...120]
-      daily_url: "http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/daily/"
-      monthly: monthly_doc.css(".monthlyHoroscope p").text[0...120]
-      monthly_url: "http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/monthly/"
-      yearly: yearly_doc.css(".astrology .headline-div-block p")[1].text[0...120]
+      daily: daily_doc.css(".dailyHoroscope p").text[0...120],
+      daily_url: "http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/daily/",
+      monthly: monthly_doc.css(".monthlyHoroscope p").text[0...120],
+      monthly_url: "http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/monthly/",
+      yearly: yearly_doc.css(".astrology .headline-div-block p")[1].text[0...120],
       yearly_url: "http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/2018/"
     }
   end
@@ -54,11 +54,11 @@ class Astrological::Scraper
     # site_two_info
 
     site_two_info = {
-      daily: "It's a mystery!"
-      daily_url: "https://cafeastrology.com/#{@name.downcase}dailyhoroscope.html"
-      monthly: monthly_doc.css(".entry-content .content-box-green p").text[0...120]
-      monthly_url: "https://cafeastrology.com/monthly#{@name.downcase}horoscope.html"
-      yearly: yearly_doc.css(".entry-content p")[10].text[0...120]
+      daily: "It's a mystery!",
+      daily_url: "https://cafeastrology.com/#{@name.downcase}dailyhoroscope.html",
+      monthly: monthly_doc.css(".entry-content .content-box-green p").text[0...120],
+      monthly_url: "https://cafeastrology.com/monthly#{@name.downcase}horoscope.html",
+      yearly: yearly_doc.css(".entry-content p")[10].text[0...120],
       yearly_url: "https://cafeastrology.com/2018-#{@name.downcase}-horoscope-overview.html"
     }
   end
@@ -78,11 +78,11 @@ class Astrological::Scraper
     # site_three_info
 
     site_three_info = {
-      daily: daily_doc.css(".horoscope .daily-horoscope p").text[0...120]
-      daily_url: "https://www.astrology.com/horoscope/daily/today/#{@name.downcase}.html"
-      monthly: nil
-      monthly_url: nil
-      yearly: yearly_doc.css(".horoscope .daily-horoscope #overview p").text[0...120]
+      daily: daily_doc.css(".horoscope .daily-horoscope p").text[0...120],
+      daily_url: "https://www.astrology.com/horoscope/daily/today/#{@name.downcase}.html",
+      monthly: nil,
+      monthly_url: nil,
+      yearly: yearly_doc.css(".horoscope .daily-horoscope #overview p").text[0...120],
       yearly_url: "https://www.astrology.com/us/horoscope/yearly-overview-2018.aspx?when=this-year&sign=#{@name.downcase}"
     }
   end
