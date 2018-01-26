@@ -73,9 +73,11 @@ class Astrological::CLI
       # elsif @chosen_reading == "weekly"
       #   puts "#{i}) #{sign_info.weekly}... For more, visit: #{sign_info.weekly_url}"
       elsif @chosen_reading == "monthly"
-        puts ""
-        puts "#{i}) #{sign_info.monthly}..."
-        puts "For more, visit: #{sign_info.monthly_url}" unless (sign_info.monthly == nil || sign_info.monthly_url == nil)
+        if !(sign_info.monthly == nil || sign_info.monthly_url == nil)
+          puts ""
+          puts "#{i}) #{sign_info.monthly}..."
+          puts "For more, visit: #{sign_info.monthly_url}"
+        end
       elsif @chosen_reading == "yearly"
         puts ""
         puts "#{i}) #{sign_info.yearly}..."
@@ -96,6 +98,7 @@ class Astrological::CLI
       current_readings
       another_reading?
     elsif another_input == "different sign"
+      Astrological::Sign.reset_all
       start
     elsif another_input == "exit"
       puts "Thank you for using Astrological!"

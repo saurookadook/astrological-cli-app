@@ -10,11 +10,15 @@ class Astrological::Sign
   end
 
   def self.create_readings(readings_array)
-    readings_array.each {|readings_hash| Sign.new(readings_hash)}
+    readings_array.each {|readings_hash| Astrological::Sign.new(readings_hash)}
   end
 
   def self.all
     @@all
+  end
+
+  def self.reset_all
+    @@all.clear
   end
 
 end
