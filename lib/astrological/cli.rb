@@ -1,5 +1,5 @@
 class Astrological::CLI
-  attr_accessor :chosen_sign, :chosen_reading, :sign_readings
+  attr_accessor :chosen_sign, :chosen_reading
 
   ALL_SIGNS = [
     "Aquarius",
@@ -14,6 +14,12 @@ class Astrological::CLI
     "Scorpio",
     "Sagittarius",
     "Capricorn"
+  ]
+
+  READING_TIMES = [
+    "daily",
+    "monthly",
+    "yearly"
   ]
 
   def call
@@ -34,7 +40,6 @@ class Astrological::CLI
     puts "Which sign would you like to see more info about? Please enter one of the following:"
     puts "Aquarius / Pisces / Aries / Taurus / Gemini / Cancer / Leo / Virgo / Libra / Scorpio / Sagittarius / Capricorn"
     sign_input = gets.strip.capitalize
-    # Refactor with all signs kept in SIGNS_ARRAY constant and iterate over array to check for validity?
     if ALL_SIGNS.include?(sign_input)
       @chosen_sign = sign_input
     else
@@ -48,7 +53,7 @@ class Astrological::CLI
     puts "Great! Now, which reading would you like to view? Please enter one of the following:"
     puts "daily / monthly / yearly"
     reading_input = gets.strip.downcase
-    if (reading_input == "daily") || (reading_input == "monthly") || (reading_input == "yearly")
+    if READING_TIMES.include?(reading_input)
       @chosen_reading = reading_input
     else
       puts "I'm sorry, the expression you entered is invalid. Please try again."
@@ -57,9 +62,7 @@ class Astrological::CLI
   end
 
   def gather_readings
-    # creates instances of `Sign` class?
     readings_array = Astrological::Scraper.scrape_sites(@chosen_sign)
-    # @sign_readings = Astrological::Sign.create_readings(readings_array)
     Astrological::Sign.create_readings(readings_array)
   end
 
@@ -70,8 +73,6 @@ class Astrological::CLI
         puts ""
         puts "#{i}) #{sign_info.daily}..."
         puts "For more, visit: #{sign_info.daily_url}"
-      # elsif @chosen_reading == "weekly"
-      #   puts "#{i}) #{sign_info.weekly}... For more, visit: #{sign_info.weekly_url}"
       elsif @chosen_reading == "monthly"
         if !(sign_info.monthly == nil || sign_info.monthly_url == nil)
           puts ""
@@ -109,39 +110,3 @@ class Astrological::CLI
   end
 
 end
-
-
-# case @chosen_reading
-# when "daily"
-#   @chosen_sign.scrape_site_one
-#   puts "1) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
-#   @chosen_sign.scrape_site_two
-#   puts "2) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
-#   @chosen_sign.scrape_site_three
-#   puts "3) #{@chosen_sign.daily}... For more, visit: #{@chosen_sign.daily_url}"
-# when "weekly"
-#   @chosen_sign.scrape_site_one
-#   puts "1) #{@chosen_sign.weekly}... For more, visit: #{@chosen_sign.weekly_url}"
-#   @chosen_sign.scrape_site_two
-#   puts "2) #{@chosen_sign.weekly}... For more, visit: #{@chosen_sign.weekly_url}"
-#   @chosen_sign.scrape_site_three
-#   puts "3) #{@chosen_sign.weekly}... For more, visit: #{@chosen_sign.weekly_url}"
-# when "monthly"
-#   @chosen_sign.scrape_site_one
-#   puts "1) #{@chosen_sign.monthly}... For more, visit: #{@chosen_sign.monthly_url}"
-#   @chosen_sign.scrape_site_two
-#   puts "2) #{@chosen_sign.monthly}... For more, visit: #{@chosen_sign.monthly_url}"
-#   @chosen_sign.scrape_site_three
-#   puts "3) #{@chosen_sign.monthly}... For more, visit: #{@chosen_sign.monthly_url}"
-# when "yearly"
-#   @chosen_sign.scrape_site_one
-#   puts "1) #{@chosen_sign.yearly}... For more, visit: #{@chosen_sign.yearly_url}"
-#   @chosen_sign.scrape_site_two
-#   puts "2) #{@chosen_sign.yearly}... For more, visit: #{@chosen_sign.yearly_url}"
-#   @chosen_sign.scrape_site_three
-#   puts "3) #{@chosen_sign.yearly}... For more, visit: #{@chosen_sign.yearly_url}"
-# end
-
-# use .each_with_index, similarly to the way Avi does in daily-deals
-# and need to figure out better way to call reading period data
-# binding.pry
