@@ -1,5 +1,4 @@
-class Astrological::Scraper
-  # attr_accessor :name, :daily, :daily_url, :weekly, :weekly_url, :monthly, :monthly_url, :yearly, :yearly_url
+class Astrological::Scrape
   attr_accessor :name, :current_year
 
   def self.scrape_sites(name)
@@ -17,17 +16,7 @@ class Astrological::Scraper
   def self.scrape_site_one # www.astrology-zodiac-signs.com/
     daily_doc = Nokogiri::HTML(open("http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/daily/"))
     monthly_doc = Nokogiri::HTML(open("http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/monthly/"))
-    yearly_doc = Nokogiri::HTML(open("http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/#{@current_year}/")) # Use current year instead?
-
-    # site_one_info = self.new
-    # site_one_info.daily = daily_doc.css(".dailyHoroscope p").text[0...120]
-    # site_one_info.daily_url = "http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/daily/"
-    # site_one_info.monthly = monthly_doc.css(".monthlyHoroscope p").text[0...120]
-    # site_one_info.monthly_url = "http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/monthly/"
-    # site_one_info.yearly = yearly_doc.css(".astrology .headline-div-block p")[1].text[0...120]
-    # site_one_info.yearly_url = "http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/2018/"
-    #
-    # site_one_info
+    yearly_doc = Nokogiri::HTML(open("http://www.astrology-zodiac-signs.com/horoscope/#{@name.downcase}/#{@current_year}/"))
 
     site_one_info = {
       daily: daily_doc.css(".dailyHoroscope p").text[0...120],
@@ -42,7 +31,7 @@ class Astrological::Scraper
   def self.scrape_site_two # cafeastrology.com/
     daily_doc = Nokogiri::HTML(open("https://cafeastrology.com/#{@name.downcase}dailyhoroscope.html", 'User-Agent' => 'chrome'))
     monthly_doc = Nokogiri::HTML(open("https://cafeastrology.com/monthly#{@name.downcase}horoscope.html", 'User-Agent' => 'chrome'))
-    yearly_doc = Nokogiri::HTML(open("https://cafeastrology.com/#{@current_year}-#{@name.downcase}-horoscope-overview.html", 'User-Agent' => 'chrome')) # Pass in current year?
+    yearly_doc = Nokogiri::HTML(open("https://cafeastrology.com/#{@current_year}-#{@name.downcase}-horoscope-overview.html", 'User-Agent' => 'chrome'))
 
     site_two_info = {
       daily: "It's a mystery!",
