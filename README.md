@@ -1,6 +1,6 @@
 # Astrological
 
-Welcome to Astrological, a Ruby gem that utilizes a CLI that lets you find your horoscope reading from a few different sites. Once you choose your sign, you will also be able to select the time period of the reading (daily, monthly, or yearly) that you would like to view.
+Welcome to Astrological, a Ruby gem utilizing a CLI that lets you find your horoscope reading from a few different sites. Once you choose your sign, you will also be able to select the time period of the reading (daily, monthly, or yearly) that you would like to view, followed by your readings!
 
 ## Installation
 
@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+TODO: Write usage instructions here ????
 
 ## Development
 

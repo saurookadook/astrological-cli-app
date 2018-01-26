@@ -43,7 +43,7 @@ class Astrological::CLI
     if ALL_SIGNS.include?(sign_input)
       @chosen_sign = sign_input
     else
-      puts "I'm sorry, the heavens are confused. Please try again."
+      puts "I'm sorry, the cosmos does not recognize that expression. Please try again."
       choose_sign
     end
   end
@@ -56,7 +56,7 @@ class Astrological::CLI
     if READING_TIMES.include?(reading_input)
       @chosen_reading = reading_input
     else
-      puts "I'm sorry, the expression you entered is invalid. Please try again."
+      puts "I'm sorry, the cosmos does not recognize that expression. Please try again."
       choose_reading
     end
   end
@@ -104,7 +104,7 @@ class Astrological::CLI
     elsif another_input == "exit"
       puts "Thank you for using Astrological!"
     else
-      puts "I'm sorry, the expression you entered is invalid. Please try again:"
+      puts "I'm sorry, the cosmos does not recognize that expression. Please try again:"
       another_reading?
     end
   end
