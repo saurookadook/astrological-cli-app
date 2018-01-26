@@ -44,7 +44,8 @@ class Astrological::CLI
 
   def current_readings
     puts "Here are the current #{@chosen_reading} readings for #{@chosen_sign}:"
-    sites = Astrological::Sign.scrape_sites(@chosen_sign)
+    sites = Astrological::Sign.new(@chosen_sign).all
+
     sites.each.with_index(1) do |sign_info, i|
       if @chosen_reading == "daily"
         puts ""
