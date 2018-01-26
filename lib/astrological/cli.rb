@@ -10,6 +10,7 @@ class Astrological::CLI
   def start
     choose_sign
     choose_reading
+    gather_readings # Maybe?
     current_readings
     another_reading?
   end
@@ -40,6 +41,11 @@ class Astrological::CLI
       puts "I'm sorry, the expression you entered is invalid. Please try again."
       choose_reading
     end
+  end
+
+  def gather_readings
+    # creates instances of `Sign` class?
+    # readings_array = Astrological::Scraper.scrape_sites(@chosen_sign)
   end
 
   def current_readings
