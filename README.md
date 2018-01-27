@@ -12,7 +12,7 @@ gem 'astrological'
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here ????
+Once you have forked and cloned the repo, ran `bundle install`, and changed into the `astrological-cli-app` directory, simply type `bin/astrological` in order to run the application.
 
 ## Development
 
@@ -31,6 +31,8 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/'saurookadook'/astrological. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+Additionally, feel free to contact me if there are any other sites you would like to see incorporated into Astrological and I will do my best to do so!
 
 ## Code of Conduct
 

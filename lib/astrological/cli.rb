@@ -102,7 +102,8 @@ class Astrological::CLI
       Astrological::Sign.reset_all
       start
     elsif another_input == "exit"
-      puts "Thank you for using Astrological!"
+      puts ""
+      puts "~>*<~ Thank you for using Astrological! ~>*<~"
     else
       puts "I'm sorry, the cosmos does not recognize that expression. Please try again:"
       another_reading?

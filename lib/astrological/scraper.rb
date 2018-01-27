@@ -1,4 +1,4 @@
-class Astrological::Scrape
+class Astrological::Scraper
   attr_accessor :name, :current_year
 
   def self.scrape_sites(name)
