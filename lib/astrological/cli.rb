@@ -23,7 +23,9 @@ class Astrological::CLI
   ]
 
   def call
-    puts "~>*<~ Welcome to Astrological! ~>*<~"
+    puts "~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~"
+    puts "~>*<~    Welcome to Astrological!   ~>*<~"
+    puts "~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~"
     start
   end
 
@@ -38,6 +40,7 @@ class Astrological::CLI
   def choose_sign
     puts ""
     puts "Which sign would you like to see more info about? Please enter one of the following:"
+    puts "~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~"
     puts "Aquarius / Pisces / Aries / Taurus / Gemini / Cancer / Leo / Virgo / Libra / Scorpio / Sagittarius / Capricorn"
     sign_input = gets.strip.capitalize
     if ALL_SIGNS.include?(sign_input)
@@ -51,6 +54,7 @@ class Astrological::CLI
   def choose_reading
     puts ""
     puts "Great! Now, which reading would you like to view? Please enter one of the following:"
+    puts "~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~"
     puts "daily / monthly / yearly"
     reading_input = gets.strip.downcase
     if READING_TIMES.include?(reading_input)
@@ -71,18 +75,24 @@ class Astrological::CLI
     Astrological::Sign.all.each.with_index(1) do |sign_info, i|
       if @chosen_reading == "daily"
         puts ""
+        puts "~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~"
         puts "#{i}) #{sign_info.daily}..."
         puts "For more, visit: #{sign_info.daily_url}"
+        puts "~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~"
       elsif @chosen_reading == "monthly"
         if !(sign_info.monthly == nil || sign_info.monthly_url == nil)
           puts ""
+          puts "~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~"
           puts "#{i}) #{sign_info.monthly}..."
           puts "For more, visit: #{sign_info.monthly_url}"
+          puts "~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~"
         end
       elsif @chosen_reading == "yearly"
         puts ""
+        puts "~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~"
         puts "#{i}) #{sign_info.yearly}..."
         puts "For more, visit: #{sign_info.yearly_url}"
+        puts "~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~"
       end
     end
   end
@@ -90,6 +100,7 @@ class Astrological::CLI
   def another_reading?
     puts ""
     puts "What would you like to do next?"
+    puts "~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~"
     puts "If you'd like to view another reading for this sign, please enter: another reading"
     puts "If you'd like to view another reading for a different sign, please enter: different sign"
     puts "Or if you'd like to exit Astrolgical, please enter: exit"
@@ -103,7 +114,9 @@ class Astrological::CLI
       start
     elsif another_input == "exit"
       puts ""
-      puts "~>*<~ Thank you for using Astrological! ~>*<~"
+      puts "~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~"
+      puts "~>*<~  Thank you for using Astrological!  ~>*<~"
+      puts "~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~ ~>*<~"
     else
       puts "I'm sorry, the cosmos does not recognize that expression. Please try again:"
       another_reading?
