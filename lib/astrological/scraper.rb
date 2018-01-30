@@ -1,8 +1,8 @@
 class Astrological::Scraper
   attr_accessor :name, :current_year
 
-  def self.scrape_sites(name)
-    @name = name
+  def self.scrape_sites(chosen_sign)
+    @name = chosen_sign
     @current_year = Time.new.year
     sign_info = []
 

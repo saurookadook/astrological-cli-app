@@ -1,5 +1,5 @@
 class Astrological::Sign
-  attr_accessor :daily, :daily_url, :weekly, :weekly_url, :monthly, :monthly_url, :yearly, :yearly_url
+  attr_accessor :daily, :daily_url, :monthly, :monthly_url, :yearly, :yearly_url
 
   @@all = []
 
