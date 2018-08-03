@@ -33,13 +33,17 @@ class Astrological::Scraper
     monthly_doc = Nokogiri::HTML(open("https://cafeastrology.com/monthly#{@name.downcase}horoscope.html", 'User-Agent' => 'chrome'))
     yearly_doc = Nokogiri::HTML(open("https://cafeastrology.com/#{@current_year}-#{@name.downcase}-horoscope-overview.html", 'User-Agent' => 'chrome'))
 
+    # binding.pry
+
     site_two_info = {
       daily: "Your reading is lost amongst the stars",
       daily_url: "https://cafeastrology.com/#{@name.downcase}dailyhoroscope.html",
       monthly: monthly_doc.css(".entry-content .content-box-green p").text[0...120],
-      monthly_url: "https://cafeastrology.com/monthly#{@name.downcase}horoscope.html",
-      yearly: yearly_doc.css(".entry-content p")[10].text[0...120],
-      yearly_url: "https://cafeastrology.com/#{@current_year}-#{@name.downcase}-horoscope-overview.html"
+      monthly_url: "https://cafeastrology.com/monthly#{@name.downcase}horoscope.html"
+
+      # Site has changed ....?
+      # yearly: yearly_doc.css(".entry-content p")[10].text[0...120],
+      # yearly_url: "https://cafeastrology.com/#{@current_year}-#{@name.downcase}-horoscope-overview.html"
     }
   end
 
